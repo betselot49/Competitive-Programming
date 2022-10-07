@@ -1,9 +1,7 @@
 class Solution:
     def findAnagrams(self, s: str, p: str) -> List[int]:
         
-        i, j, ans = 0, 0, [] 
-        c = Counter(p)
-        
+        i, j, ans, c = 0, 0, [], Counter(p) 
         while j < len(s):
             if c.get(s[j], 0) > 0:
                 var = {s[j]: -1}
