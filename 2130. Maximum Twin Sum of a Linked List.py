@@ -19,5 +19,4 @@ class Solution:
             curSum = stack.pop() + slow.val
             maxSum = max(maxSum, curSum)
             slow = slow.next
-            
         return maxSum
