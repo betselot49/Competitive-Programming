@@ -3,10 +3,8 @@ class Solution:
         ans = []
         for j in range(len(matrix[0])):
             temp = []
-            i = 0
-            while i < len(matrix):
+            for i in range(len(matrix)):
                 temp.append(matrix[i][j])
-                i += 1
             ans.append(temp)
         return ans
                 
