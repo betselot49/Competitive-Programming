@@ -12,10 +12,13 @@ class Solution:
         for winner in winners:
             if winner not in losers:
                 winnerList.append(winner)
+                
         for loser in losers:
             if losers[loser] == 1:
                 loserList.append(loser)
+                
         loserList.sort()
         winnerList.sort()
+        
         return [winnerList, loserList]
         
