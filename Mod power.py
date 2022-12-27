@@ -1,0 +1,5 @@
+num1 = int(input())
+num2 = int(input())
+mod = int(input())
+print(pow(num1, num2))
+print(pow(num1, num2, mod))
