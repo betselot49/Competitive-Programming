@@ -8,7 +8,7 @@ class Solution:
         totalEven = 0
         output = []
         
-        for num in nums:
+        for num in nums:   # collect all even sum
             if self.even(num):
                 totalEven += num
                 
