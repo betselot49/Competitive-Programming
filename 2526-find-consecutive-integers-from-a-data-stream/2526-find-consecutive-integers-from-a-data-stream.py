@@ -24,9 +24,3 @@ class DataStream:
 # Your DataStream object will be instantiated and called as such:
 # obj = DataStream(value, k)
 # param_1 = obj.consec(num)
-
-"""
-i = -1 + 1 = 0
-4
-
-"""
