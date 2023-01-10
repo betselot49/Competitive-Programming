@@ -1,36 +1,32 @@
 class Solution:
     def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
-        sc = 0
-        sr = 0
-        ec = len(matrix[0])
-        er = len(matrix)
-        i = sc
-        j = sr
-        ans = []
-        counter = 0
-        while counter < len(matrix[0] * len(matrix)):
-            for i in range(sc, ec):
-                if counter < len(matrix[0] * len(matrix)):
-                    ans.append(matrix[j][i])
-                    counter += 1
-            sr += 1
-
-            for j in range(sr, er):
-                if counter < len(matrix[0] * len(matrix)):
-                    ans.append(matrix[j][i])
-                    counter += 1
-            ec -= 1
-
-            for i in range(ec - 1, sc - 1, -1):
-                if counter < len(matrix[0] * len(matrix)):
-                    ans.append(matrix[j][i])
-                    counter += 1
-            er -= 1
-
-            for j in range(er - 1, sr - 1, -1):
-                if counter < len(matrix[0] * len(matrix)):
-                    ans.append(matrix[j][i])
-                    counter += 1
-            sc += 1
+        startCol, startRow, endCol, endRow = 0, 0, len(matrix[0]), len(matrix)
         
-        return ans
+        index1, index2, counter, spiralList = 0, 0, 0, []
+       
+        while counter < len(matrix[0] * len(matrix)):  # simulate until the cycle ends.
+            for index1 in range(startCol, endCol):
+                if counter < len(matrix[0] * len(matrix)):
+                    spiralList.append(matrix[index2][index1])
+                    counter += 1
+            startRow += 1
+
+            for index2 in range(startRow, endRow):
+                if counter < len(matrix[0] * len(matrix)):
+                    spiralList.append(matrix[index2][index1])
+                    counter += 1
+            endCol -= 1
+
+            for index1 in range(endCol - 1, startCol - 1, -1):
+                if counter < len(matrix[0] * len(matrix)):
+                    spiralList.append(matrix[index2][index1])
+                    counter += 1
+            endRow -= 1
+
+            for index2 in range(endRow - 1, startRow - 1, -1):
+                if counter < len(matrix[0] * len(matrix)):
+                    spiralList.append(matrix[index2][index1])
+                    counter += 1
+            startCol += 1
+        
+        return spiralList
