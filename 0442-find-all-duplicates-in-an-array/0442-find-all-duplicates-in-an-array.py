@@ -1,9 +1,9 @@
 class Solution:
     def findDuplicates(self, nums: List[int]) -> List[int]:
         nums = Counter(nums)
-        ans = []
+        twice = []
         for num in nums:
             if nums[num] == 2:
-                ans.append(num)
+                twice.append(num)
                 
-        return ans
+        return twice
