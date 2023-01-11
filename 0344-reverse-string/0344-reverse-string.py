@@ -1,8 +1,8 @@
 class Solution:
     def reverseString(self, s: List[str]) -> None:
-        i, j = 0, len(s) - 1
+        left, right = 0, len(s) - 1
      
-        for i in range(len(s)//2):
-            s[i], s[j-i] = s[j-i], s[i]
+        for left in range(len(s)//2):
+            s[left], s[right-left] = s[right-left], s[left]
         
         return s
