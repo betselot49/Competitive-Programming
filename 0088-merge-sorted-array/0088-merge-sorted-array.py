@@ -5,19 +5,19 @@ class Solution:
         """
         
         index = n + m - 1
-        i = m - 1
-        j = n - 1
-        while j >= 0 and i >= 0:
-            if nums1[i] > nums2[j]:
-                nums1[index] = nums1[i]
-                i -= 1
+        pointer1 = m - 1
+        pointer2 = n - 1
+        while pointer2 >= 0 and pointer1 >= 0:
+            if nums1[pointer1] > nums2[pointer2]:
+                nums1[index] = nums1[pointer1]
+                pointer1 -= 1
                 index -= 1
             else:
-                nums1[index] = nums2[j]
-                j -= 1
+                nums1[index] = nums2[pointer2]
+                pointer2 -= 1
                 index -= 1
-        while j >= 0:
-            nums1[index] = nums2[j]
-            j -= 1
+        while pointer2 >= 0:
+            nums1[index] = nums2[pointer2]
+            pointer2 -= 1
             index -= 1
     
