@@ -3,13 +3,11 @@ class Solution:
         counter = Counter(s1)
         k = len(s1)
         i = 0
-      
-        
+    
         while i < len(s2) and s2[i] not in counter:
             i += 1
           
         j = i
-        
         while i < len(s2):
             if i >= j:
                 j = i
@@ -26,17 +24,7 @@ class Solution:
                 i += 1
 
         return False
-                
-        
-        """
-        
-        "ky"
-        
-        "ainwkckifykxlribaypk"
-              |
-              |
-        
-        """
+    
                     
 
             
