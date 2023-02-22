@@ -3,7 +3,8 @@ class Solution:
         left = right = 0
         anagram = []
         while right < len(words):
-            while right < len(words) and Counter(words[left]) == Counter(words[right]):
+            leftCount = Counter(words[left])
+            while right < len(words) and leftCount == Counter(words[right]):
                 right += 1
             anagram.append(words[left])
             left = right
