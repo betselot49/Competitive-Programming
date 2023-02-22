@@ -1,7 +1,5 @@
 class Solution:
     def getAverages(self, nums: List[int], k: int) -> List[int]:
-        if k == 0:
-            return nums
         cur_sum = 0
         left = 0
         res = [-1] * len(nums)
