@@ -12,5 +12,4 @@ def superDigit(n, k):
     new = 0
     for num in n:
         new += int(num)
-    
     return Super(str(new)*k)
