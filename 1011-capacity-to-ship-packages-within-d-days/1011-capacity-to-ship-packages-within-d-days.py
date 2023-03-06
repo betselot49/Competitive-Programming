@@ -16,7 +16,7 @@ class Solution:
     
     def shipWithinDays(self, weights: List[int], days: int) -> int:
         low = max(weights) - 1
-        high = sum(weights) + 1
+        high = sum(weights)
         print(high)
         
         while low + 1 < high:
