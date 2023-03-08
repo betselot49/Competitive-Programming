@@ -7,8 +7,8 @@
 
 class Solution:    
     def merger(self, node1, node2):
-        if node1 == None or node2 == None:
-            return node1 if node1 else node2
+        if not node1 or not node2:
+            return node1 or node2
         
         merged = TreeNode(node1.val + node2.val)
         merged.left = self.merger(node1.left, node2.left)
