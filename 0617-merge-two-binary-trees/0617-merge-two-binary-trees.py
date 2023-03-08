@@ -10,7 +10,6 @@ class Solution:
         if node1 == None or node2 == None:
             return node1 if node1 else node2
         
-        
         merged = TreeNode(node1.val + node2.val)
         merged.left = self.merger(node1.left, node2.left)
         merged.right = self.merger(node1.right, node2.right)
