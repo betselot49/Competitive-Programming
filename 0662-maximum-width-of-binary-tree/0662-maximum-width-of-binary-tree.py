@@ -21,7 +21,6 @@ class Solution:
             # do the same thing for left and right nodes.
             maxWidth(node.left, row+1, (col*2)-1)
             maxWidth(node.right, row+1, col*2)
-            return 
         
         maxWidth(root, 1, 1)  # one indexed column.
         
