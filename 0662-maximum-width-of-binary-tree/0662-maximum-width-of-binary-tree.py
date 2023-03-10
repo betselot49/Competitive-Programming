@@ -9,8 +9,7 @@ class Solution:
     def widthOfBinaryTree(self, root: Optional[TreeNode]) -> int:
         row_dict = defaultdict(list)
         def maxWidth(node, row, col):
-            if not node:
-                return
+            if not node: return
             
             # putting col in dictionary using row as a key.
             if row_dict[row] and row_dict[row][1] < col:
