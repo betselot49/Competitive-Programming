@@ -7,7 +7,7 @@ class Solution:
             
             for i in range(ind, len(num)):
                 curr = num[ind: i+1]
-                if (len(str(int(curr))) == len(curr) and   # checks for leading zeros except for the zero number it self alone
+                if (len(str(int(curr))) == len(curr) and   # checks for leading zeros except for the number zero itself alone
                    (len(array) < 2 or array[-1] + array[-2] == int(curr))):  # cheks the sum of last two numbers == curr 
                     array.append(int(curr))
                     
