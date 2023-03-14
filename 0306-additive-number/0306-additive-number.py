@@ -2,8 +2,7 @@ class Solution:
     def isAdditiveNumber(self, num: str) -> bool:
         array = []
         def additive(ind):
-            print(array)
-            if ind >= len(num):
+            if ind >= len(num): 
                 return len(array) >= 3
             
             for i in range(ind, len(num)):
