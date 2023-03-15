@@ -4,6 +4,20 @@
 #         self.val = val
 #         self.next = next
 class Solution:
+    def sortList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if not(head) or not(head.next):
+            return head
+        
+        slow = fast = head
+        while fast and fast.next and fast.next.next:
+            slow = slow.next
+            fast = fast.next.next
+        
+        right = slow.next
+        slow.next = None
+        return self.merge(self.sortList(head), self.sortList(right))
+    
+    
     def merge(self, node1, node2):
         merged = ListNode()
         dummy = merged
@@ -19,15 +33,4 @@ class Solution:
         dummy.next = node1 if node1 else node2
         return merged.next
     
-    def sortList(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        if not(head) or not(head.next):
-            return head
-        
-        slow = fast = head
-        while fast and fast.next and fast.next.next:
-            slow = slow.next
-            fast = fast.next.next
-        
-        right = slow.next
-        slow.next = None
-        return self.merge(self.sortList(head), self.sortList(right))
+   
