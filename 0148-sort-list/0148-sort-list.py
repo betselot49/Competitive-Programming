@@ -24,20 +24,10 @@ class Solution:
             return head
         
         slow = fast = head
-        left = dummy = ListNode()
         while fast and fast.next and fast.next.next:
-            dummy.next = ListNode(slow.val)
-            dummy = dummy.next
             slow = slow.next
             fast = fast.next.next
-            
-        dummy.next = ListNode(slow.val) if slow else None
-        right = slow.next if slow else None
         
-        left = self.sortList(left.next)
-        right = self.sortList(right)
-        
-        return self.merge(left, right)
-        
-        
-        
+        right = slow.next
+        slow.next = None
+        return self.merge(self.sortList(head), self.sortList(right))
