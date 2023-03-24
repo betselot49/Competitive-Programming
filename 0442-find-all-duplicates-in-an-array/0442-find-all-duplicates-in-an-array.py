@@ -1,9 +1,15 @@
 class Solution:
     def findDuplicates(self, nums: List[int]) -> List[int]:
-        nums = Counter(nums)
-        twice = []
-        for num in nums:
-            if nums[num] == 2:
-                twice.append(num)
+        idx = 0
+        while idx < len(nums):
+            curr = nums[idx]
+            nums[idx], nums[curr-1] = nums[curr-1], nums[idx]
+            if idx+1 == nums[idx] or curr == nums[idx]:
+                idx += 1
                 
-        return twice
+        duplicate = []
+        for idx, num in enumerate(nums):
+            if idx+1 != num:
+                duplicate.append(num)
+        return duplicate
+    
