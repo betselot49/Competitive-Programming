@@ -3,7 +3,6 @@ class Solution(object):
         self.diff = diff
         self.pairs = 0
         nums = self.arrayGenerate(nums1, nums2)
-        print(nums)
         self.divide(nums)
         return self.pairs
         
@@ -18,13 +17,12 @@ class Solution(object):
         
     def merger(self, left, right):
         idx2 = 0
-        for idx1, num in enumerate(left):
+        for num in left:
             while idx2 < len(right) and num - right[idx2] > self.diff:
                 idx2 += 1
             self.pairs += len(right) - idx2
 
-        idx1 = idx2 =  0
-        merged = []
+        idx1, idx2, merged = 0, 0, []
         while idx1 < len(left) and idx2 < len(right):
             if left[idx1] <= right[idx2]:
                 merged.append(left[idx1])
