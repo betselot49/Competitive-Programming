@@ -1,16 +1,9 @@
-class Solution:
-    def missingNumber(self, array: List[int]) -> int:
-        idx = 0
-        while idx < len(array):
-            if array[idx] == -1: return idx
-            
-            if idx == array[idx]:
-                idx += 1
-            else:
-                curr = array[idx]    
-                if array[idx] == len(array) or array[curr] == -1:
-                    array[idx], array[curr-1] = array[curr-1], -1
-                elif idx != array[idx]:
-                    array[curr], array[idx] = array[idx], array[curr]
+class Solution(object):
+    def missingNumber(self, nums):
+        ans = 0
+        for i in range(1, len(nums)+1):
+            ans ^= i
+        for num in nums:
+            ans ^= num
+        return ans
         
-        return idx
