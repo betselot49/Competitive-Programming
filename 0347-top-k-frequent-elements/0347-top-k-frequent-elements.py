@@ -2,7 +2,6 @@ class Solution(object):
     def topKFrequent(self, nums, k):
         counter_arr = Counter(nums).items()
         N = len(counter_arr)
-        print(counter_arr)
         def quickSort(pivot, end, array, target):
             read = write = pivot + 1
             while read < end:
