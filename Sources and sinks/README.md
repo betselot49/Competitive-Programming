@@ -18,14 +18,20 @@ Print in the first line the number of sources in a graph, and then sources in in
 
 Examples
 Input example #1
+
 5
 
 0 0 0 0 0
+
 0 0 0 0 1
+
 1 1 0 0 0
+
 0 0 0 0 0
+
 0 0 0 0 0
 
 Output example #1
 2 3 4
+
 3 1 4 5
