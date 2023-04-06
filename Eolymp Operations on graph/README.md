@@ -15,18 +15,23 @@ Output data
 For each operation Vertex print in a separate line the list of adjacent vertices for a given vertex. The vertices in a list can be printed in any order. If some vertex hasn't adjacent vertices, print the empty line.
 
 
-
-
-
+![Uploading 68f5a83aaf9717053999fd0f88c9a1c40c49e797.gif…]()
 
 
 Examples
 Input example #1 content_copy,
-4,
-4,
-1 1 2,
-1 2 3,
-2 4,
-2 2,
-Output example #1,
-1 3,
+4
+
+4
+
+1 1 2
+
+1 2 3
+
+2 4
+
+2 2
+
+Output example #1
+
+1 3
