@@ -1,6 +1,5 @@
 class Solution:
     def countSubIslands(self, grid1: List[List[int]], grid2: List[List[int]]) -> int:
-        self.sub_island = True
         directions = [(-1, 0), (0, -1), (1, 0), (0, 1)]
         def subIsland(row, col):
             if (row < 0 or col < 0 or row == len(grid2) or col == len(grid2[0]) or grid2[row][col] == 0): return 
