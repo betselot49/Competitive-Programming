@@ -9,7 +9,6 @@ class Solution:
         self.sum = 0
         def dfs(node):
             if not node: return 
-            
             if node.val % 2 == 0:
                 if node.left and node.left.left:
                     self.sum += node.left.left.val
