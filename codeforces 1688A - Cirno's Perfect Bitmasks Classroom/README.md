@@ -6,13 +6,13 @@ Cirno gave her students a positive integer x
 
 * x and y>0
 * x xor y>0
-Where and
+* Where and
  is the bitwise AND operation, and xor
  is the bitwise XOR operation.
 
-Among the students was Mystia, who was truly baffled by all these new operators. Please help her!
+* Among the students was Mystia, who was truly baffled by all these new operators. Please help her!
 
-Input
+* Input
 The first line of input contains a single integer t
  (1≤t≤103
 ) — the number of input test cases.
@@ -21,7 +21,7 @@ For each test case, the only line of input contains one integer x
  (1≤x≤230
 ).
 
-Output
+* Output
 For each test case, print a single integer — the minimum number of y
 .
 
