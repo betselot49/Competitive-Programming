@@ -4,8 +4,8 @@ Cirno gave her students a positive integer x
 . As an assignment, her students need to find the minimum positive integer y
 , which satisfies the following two conditions:
 
-x and y>0
-x xor y>0
+* x and y>0
+* x xor y>0
 Where and
  is the bitwise AND operation, and xor
  is the bitwise XOR operation.
