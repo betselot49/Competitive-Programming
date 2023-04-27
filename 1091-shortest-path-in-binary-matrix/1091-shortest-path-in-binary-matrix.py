@@ -25,11 +25,4 @@ class Solution:
         N = len(grid) - 1
         return shortestPath((0, 0), (N, N))
     
-    """
-    
-    1 0 0 
-    1 1 0
-    1 1 0
-    
-    
-    """
+   
