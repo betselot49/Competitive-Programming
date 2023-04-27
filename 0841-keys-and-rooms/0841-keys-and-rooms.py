@@ -1,6 +1,7 @@
 class Solution:
     def canVisitAllRooms(self, rooms: List[List[int]]) -> bool:
-        def bfsRoom(room, rooms, visited):
+        visited = [False] * len(rooms)
+        def bfsRoom(room):
             queue = deque([room])
             while queue:
                 curr_room = queue.popleft()
@@ -9,5 +10,4 @@ class Solution:
                     if not visited[room]:
                         queue.append(room)
             return all(visited)
-        visited = [False] * len(rooms)
-        return bfsRoom(0, rooms, visited)
+        return bfsRoom(0)
