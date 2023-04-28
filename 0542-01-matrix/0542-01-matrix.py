@@ -12,17 +12,10 @@ class Solution:
                 
         # find the all zeros in the matrix and append it to queue
         def findZero():
-            visited = set()
-            local_queue = deque([(0, 0)])
-            while local_queue:
-                row, col = local_queue.popleft()
-                if (row, col) in visited: continue
-                if mat[row][col] == 0:
+            for row in range(len(mat)):
+                for col in range(len(mat[0])):
+                    if mat[row][col]: continue
                     queue.append((row, col, 0))
-                visited.add((row, col))
-                for cord1, cord2 in DIRECTIONS:
-                    if isValid(row + cord1, col + cord2):
-                        local_queue.append((row + cord1, col + cord2))
             return queue
                         
         iteration = 0
