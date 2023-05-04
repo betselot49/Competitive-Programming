@@ -7,7 +7,6 @@ class KthLargest:
             heappop(nums)
         self.nums = nums
         self.k = k
-        print()
 
     def add(self, val: int) -> int:
         heappush(self.nums, val)
