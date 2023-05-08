@@ -10,16 +10,15 @@ class Solution:
             if all_found:
                 queue.append(ind)
                 
-        done = set()     
+                
         order = []
         while queue:
             curr = queue.popleft()
-            if recipes[curr] in done: continue
-            done.add(recipes[curr])
+            if recipes[curr] in supplies: continue
             supplies.add(recipes[curr])
             order.append(recipes[curr])
             for ind, recipe in enumerate(recipes):
-                if recipe in done: continue
+                if recipe in supplies: continue
                 all_found = True
                 for supply in ingredients[ind]:
                     if supply not in supplies:
