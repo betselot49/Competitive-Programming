@@ -1,32 +1,36 @@
 class Solution:
     def eventualSafeNodes(self, graph: List[List[int]]) -> List[int]:
-        self.stack = []
-        n = len(graph)
-
-        self.color = [0 for i in range(n)]
+        truth_val = [False] * len(graph)
+        answer = set()
         
-        for node in range(n):
-            if self.color[node] == 0:
-                self.topologicalSort(graph,node)
+        def dfs(node, path):
+            if not graph[node]:
+                answer.add(node)
+                return True
+            
+            if node in path: return False
+            
+            if truth_val[node]: return True
+            
+            path.add(node)
+            
+            truth = True
+            for neighbour in graph[node]:
+                truth = truth and dfs(neighbour, path.copy())
                 
+            path.remove(node)
             
+            if truth:
+                truth_val[node] = True
+                answer.add(node)  
+                
+            return truth
             
-        return sorted(self.stack)
-    
-    
-    def topologicalSort(self,graph,node):
-        
-        if self.color[node] == 1:
-            return False
-        
-        self.color[node] = 1
-        for neig in graph[node]:
-            if self.color[neig] == 2:
-                continue
-
-            if not self.topologicalSort(graph,neig):
-                return False
-
-        self.color[node] = 2
-        self.stack.append(node)
-        return True
+        for i in range(len(graph)):
+            path = set()
+            if i in answer: continue
+            dfs(i, path)
+            
+        answer = list(answer)
+        answer.sort()
+        return answer
