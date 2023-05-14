@@ -1,30 +1,35 @@
 class Solution:
     def checkIfPrerequisite(self, numCourses: int, prerequisites: List[List[int]], queries: List[List[int]]) -> List[bool]:
-        graph = defaultdict(list)
-        incoming = defaultdict(int)
-        ans = [set() for _ in range(numCourses)]
-        for u, v in prerequisites:
-            graph[u].append(v)
-            incoming[v] += 1
-        
-        queue = deque()
+        graph = defaultdict(lambda : set())
+        indegree = defaultdict(int)
+        for course1, course2 in prerequisites:
+            graph[course2].add(course1)
+            indegree[course1] += 1
+            
+        prereq_set = [set() for _ in range(numCourses)]
+        queue = deque([])
         for i in range(numCourses):
-            if incoming[i] == 0:
+            if indegree[i] == 0:
                 queue.append(i)
-        
+                
         while queue:
-            course = queue.popleft()
-            for neighbours in graph[course]:
-                incoming[neighbours]  -= 1
-                ans[neighbours].update(ans[course])
-                ans[neighbours].add(course)
-                if incoming[neighbours] == 0:
-                    queue.append(neighbours)
-        result = []
-        for i in range(len(queries)):
-            u, v = queries[i]
-            if u in ans[v]:
-                result.append(True)
+            curr = queue.popleft()
+            for neighbour in graph[curr]:
+                prereq_set[neighbour].update(prereq_set[curr])
+                prereq_set[neighbour].add(curr)
+                indegree[neighbour] -= 1
+                if indegree[neighbour] == 0:
+                    queue.append(neighbour)
+        
+        answer = []
+        for course1, course2 in queries:
+            if course2 in prereq_set[course1]:
+                answer.append(True)
             else:
-                result.append(False)
-        return result
+                answer.append(False)
+                
+        return answer
+                
+        
+            
+       
