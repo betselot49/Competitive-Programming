@@ -1,8 +1,8 @@
 class Solution:
     def topKFrequent(self, words: List[str], k: int) -> List[str]:
+        count = Counter(words)
         heap = []
-        word_map = Counter(words)
-        for word in word_map:
-            heapq.heappush(heap, (-word_map[word], word))
+        for key, value in list(count.items()):
+            heappush(heap, (-value, key))
+        return [heappop(heap)[1] for _ in range(k)]
         
-        return [heapq.heappop(heap)[1] for _ in range(k)]
