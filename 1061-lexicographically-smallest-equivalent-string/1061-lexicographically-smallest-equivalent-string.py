@@ -21,7 +21,6 @@ class Solution:
                     
         def find(x):
             root = x
-            # print(self.root)
             while root != self.root[root]:
                 root = self.root[root]
                 
@@ -29,14 +28,13 @@ class Solution:
                 parent = self.root[x]
                 self.root[x] = root
                 x = parent
-            # print(x, root)
             return root
                 
         
         for i in range(len(s1)):
             union(s1[i], s2[i])
         
-        # print(self.root)
+
         answer = ''
         for char in baseStr:
             answer += find(char)
