@@ -1,28 +1,51 @@
-class Solution(object):
-    def accountsMerge(self, accounts):
-        visited = [False] * len(accounts)
-        accounts_map = defaultdict(list)
-        res = []
-    
-        for i, account in enumerate(accounts):
-            for j in range(1, len(account)):
-                email = account[j]
-                accounts_map[email].append(i)
-  
-        def dfs(i, emails):
-            if visited[i]:
-                return
-            visited[i] = True
-            for j in range(1, len(accounts[i])):
-                email = accounts[i][j]
-                emails.add(email)
-                for neighbor in accounts_map[email]:
-                    dfs(neighbor, emails)
-       
-        for i, account in enumerate(accounts):
-            if visited[i]:
-                continue
-            name, emails = account[0], set()
-            dfs(i, emails)
-            res.append([name] + sorted(emails))
-        return res
+class Solution:
+    def accountsMerge(self, accounts: List[List[str]]) -> List[List[str]]:
+        # every account is the rep of it self
+        root = { acc: acc for account in accounts for acc in account[1:] }
+        size = { acc: 1 for account in accounts for acc in account[1:] }
+        group = { acc : account[0] for account in accounts for acc in account[1:] }
+        account_dec = defaultdict(set)
+        
+        def union(x, y):
+            rootX = find(x)
+            rootY = find(y)
+            
+            if rootX != rootY:
+                if size[rootX] < size[rootY]:
+                    root[rootX] = rootY
+                    size[rootY] += size[rootX]
+                else:
+                    root[rootY] = rootX
+                    size[rootX] += size[rootY]
+            
+        def find(x):
+            rootX = root[x]
+            while rootX != root[rootX]:
+                rootX = root[rootX]
+                
+            while x != rootX:
+                parent = root[x]
+                root[x] = rootX
+                x = parent
+            
+            return rootX
+        
+        for account in accounts:
+            for i in range(1, len(account)-1):
+                for j in range(i+1, len(account)):
+                    union(account[i], account[j])
+        for account in accounts:
+            for i in range(1, len(account)):
+                account_dec[find(account[i])].add(account[i])
+        
+        answer = []    
+        for key, value in list(account_dec.items()):
+            temp = [group[key]]
+            temp += sorted(list(value))
+            answer.append(temp)            
+            
+            
+        return answer
+                
+        
+                
