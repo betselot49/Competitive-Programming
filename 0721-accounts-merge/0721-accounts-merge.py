@@ -30,14 +30,18 @@ class Solution:
             
             return rootX
         
+        # union each account with each other
         for account in accounts:
             for i in range(1, len(account)-1):
                 for j in range(i+1, len(account)):
                     union(account[i], account[j])
+                    
+        # for each account find its root account and add into their represenatatives set
         for account in accounts:
             for i in range(1, len(account)):
                 account_dec[find(account[i])].add(account[i])
         
+        # collect each accounts (sorted) from their representatives and append to answer with their owner name
         answer = []    
         for key, value in list(account_dec.items()):
             temp = [group[key]]
