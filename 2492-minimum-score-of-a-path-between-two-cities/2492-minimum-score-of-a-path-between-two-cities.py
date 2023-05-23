@@ -1,42 +1,36 @@
 class Solution:
     def minScore(self, n: int, edges: List[List[int]]) -> int:
+        root = { i : i for i in range(1, n+1) }
+        size = { i : 1 for i in range(1, n+1) }
+        min_score = { i : float('inf') for i in range(1, n+1) }
         
-        self.rep = defaultdict(int)
-        for i in range(1, n + 1):
-            self.rep[i] = i
-        
-        self.size = defaultdict(float)
-        for i in range(1, n + 1):
-            self.size[i] = 1
-        
-        self.min = defaultdict(float)
-        for i in range(1, n + 1):
-            self.min[i] = float(inf)
-        
-        def find( node):
+        def union(x, y, cost):
+            rootX = find(x)
+            rootY = find(y)
             
-            if self.rep[node] == node:
-                return node
-            
-            parent = find(self.rep[node])
-            self.rep[node] = parent
-            return parent
-    
-        def union( node1, node2, weight):
-            
-            rep1, rep2 = find(node1), find(node2)
-            
-            if self.size[rep1] >= self.size[rep2]:
-                self.size[rep1] += self.size[rep2]
-                self.min[rep1] = min(weight, self.min[rep2], self.min[rep1])
-                self.rep[rep2] = rep1
+            if size[rootX] <= size[rootY]:
+                root[rootX] = rootY
+                size[rootY] += size[rootX]
+                min_score[rootY] = min(cost, min_score[rootX], min_score[rootY])
             else:
-                self.size[rep2] += self.size[rep1]
-                self.min[rep2] = min(weight, self.min[rep2], self.min[rep1])
-                self.rep[rep1] = rep2
-                
-        for edge in edges:
-            union(edge[0], edge[1], edge[2])
-      
-        return self.min[find(self.rep[1])]
+                root[rootY] = rootX
+                size[rootX] += size[rootY]
+                min_score[rootX] = min(cost, min_score[rootX], min_score[rootY])
+
+
+        def find(x):
+            rootX = root[x]
+            while rootX != root[rootX]:
+                rootX = root[rootX]
+
+            while x != rootX:
+                parent = root[x]
+                root[x] = rootX
+                x = parent
+
+            return rootX
+        
+        for city1, city2, distance in edges:
+            union(city1, city2, distance)
             
+        return min_score[find(1)]
