@@ -6,6 +6,7 @@ class Solution:
         for num in nums[1:]:
             if compare < num: return True
             
+            # only take two numbers in the array
             if len(two_arr) == 1:
                 if two_arr[0] >= num:
                     two_arr = [num]
