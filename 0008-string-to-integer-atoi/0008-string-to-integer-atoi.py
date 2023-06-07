@@ -1,5 +1,6 @@
 class Solution(object):
     def myAtoi(self, s):
+        # remember to do this question again by your self.
         MIN, MAX = -2 ** 31, 2 ** 31 - 1
         n, empty, sign = 0, True, 1
         for c in s:
