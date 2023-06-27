@@ -1,18 +1,13 @@
 class Solution:
     def getMaximumGenerated(self, n: int) -> int:
-        if n <= 1:
-            return n
-        nums = [0] * (n + 1)
-        nums[0] = 0
-        nums[1] = 1
-        max_val = 0
-        for i in range(2,n+1):
-            idx = i // 2
+        if n <= 1: return n
+        self.max = 0
+        memo = [0, 1]
+        for i in range(2, n+1):
             if i % 2 == 0:
-                nums[i] = nums[idx]
+                curr = memo[i // 2]
             else:
-                nums[i] = nums[idx] + nums[idx + 1]
-            max_val = max(max_val, nums[i])
-            
-            
-        return max_val
+                curr = memo[i // 2] + memo[i // 2 + 1]
+            self.max = max(self.max, curr)
+            memo.append(curr)      
+        return self.max
