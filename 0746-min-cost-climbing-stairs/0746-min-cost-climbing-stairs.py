@@ -1,9 +1,14 @@
 class Solution:
     def minCostClimbingStairs(self, cost: List[int]) -> int:
-        n = len(cost)
-        dp = [0] * (n + 1)  # dp[i] is minimum cost to reach to i_th floor
-        for i in range(2, n + 1):
-            jumpOneStep = dp[i - 1] + cost[i - 1]  # Minimum cost if we jump 1 step from floor (i-1)_th to i_th floor
-            jumpTwoStep = dp[i - 2] + cost[i - 2]  # Minimum cost if we jump 2 steps from floor (i-2)_th to i_th floor
-            dp[i] = min(jumpOneStep, jumpTwoStep)
-        return dp[n]
+        memo = {}
+        def backtrack(idx):
+            if idx >= len(cost): return 0
+            if idx in memo: return memo[idx]
+            
+            memo[idx] = min(cost[idx] + backtrack(idx+1), cost[idx] + backtrack(idx+2))
+            return memo[idx]
+        
+        backtrack(0)
+        return min(memo[0], memo[1])
+      
+        
