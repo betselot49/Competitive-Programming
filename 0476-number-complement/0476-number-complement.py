@@ -5,4 +5,4 @@ class Solution(object):
             num ^= mask
             mask <<= 1
         return num
-        
+            
