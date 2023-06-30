@@ -13,12 +13,9 @@ class Solution:
             left = dfs(node.left)
             right = dfs(node.right)
             
-            if left > 0 or right > 0:
-                self.maxPath = max(self.maxPath, node.val, node.val + left, node.val + right, node.val + right + left)
-                node.val = max(node.val, node.val + left, node.val + right)
-                
-            
-            self.maxPath = max(self.maxPath, node.val)
+            self.maxPath = max(self.maxPath, node.val, node.val + left, node.val + right, node.val + right + left)
+            node.val = max(node.val, node.val + left, node.val + right)
+        
             return node.val
         
         dfs(root)
