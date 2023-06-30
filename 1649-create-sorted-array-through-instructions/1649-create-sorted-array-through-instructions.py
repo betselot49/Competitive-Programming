@@ -13,6 +13,7 @@ class Solution:
         def merge(left, right):
             idx1 = idx2 = 0
             merged = []
+            # Count the number of numbers less than end greater than itself and store in the form of [number, lessThan, greaterThan] only from the left array
             while idx1 < len(left) and idx2 < len(right):
                 if left[idx1][0] == right[idx2][0]:
                     curr = left[idx1][0]
@@ -45,7 +46,8 @@ class Solution:
                 merged.append(right[idx2])
                 idx2 += 1
             return merged
-        
+
+        # Gives sorted array with numbers greater and less than itself only from to the left of the number it self
         sorted_arr = mergeSort(instructions)
         answer = 0
         for num in sorted_arr:
