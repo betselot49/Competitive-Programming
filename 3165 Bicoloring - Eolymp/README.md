@@ -12,10 +12,13 @@ the graph will be connected. That is, there will be at least one path from any n
 Input
 Consists of several test cases. Each test case starts with a line containing the number n (0 ≤ n ≤ 1000) of different nodes. The second line contains the number of edges l (1 ≤ l ≤ 250000). After this l lines will follow, each containing two numbers that specify an edge between the two nodes that they represent. A node in the graph will be labeled using a number a (1 ≤ a ≤ n). The last test contains n = 0 and is not to be processed.
 
+
+![249b876dd10ab00c90c099f5775f9c2fcc84593b](https://github.com/betselot49/Competitive-Programming/assets/107115522/0a597a27-402c-47eb-bf6b-1a9c223bbd1c)
+
+
+
 Output
 You have to decide whether the input graph can be bicolored or not, and print it as shown below.
-
-https://static.e-olymp.com/content/24/249b876dd10ab00c90c099f5775f9c2fcc84593b.gif
 
 Examples
 Input #1                          
