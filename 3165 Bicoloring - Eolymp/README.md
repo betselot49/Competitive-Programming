@@ -15,7 +15,7 @@ Consists of several test cases. Each test case starts with a line containing the
 Output
 You have to decide whether the input graph can be bicolored or not, and print it as shown below.
 
-[https://static.e-olymp.com/content/24/249b876dd10ab00c90c099f5775f9c2fcc84593b.gif](https://static.e-olymp.com/content/24/249b876dd10ab00c90c099f5775f9c2fcc84593b.gif)
+https://static.e-olymp.com/content/24/249b876dd10ab00c90c099f5775f9c2fcc84593b.gif
 
 Examples
 Input #1                          
