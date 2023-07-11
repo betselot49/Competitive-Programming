@@ -1,10 +1,24 @@
 class Solution:
     def singleNumber(self, nums):
-        single = 0
-        for i in range(32):
+        negative = 0
+        maxi = 0
+        for num in nums:
+            maxi = max(maxi, abs(num))
+            if num < 0:
+                negative += 1
+        mask = 1
+        answer = 0
+        
+        while mask <= maxi:
             count = 0
             for num in nums:
-                if num & (1<<i) == (1<<i): count += 1
-            single |= (count%3) << i
+                if abs(num) & mask == mask:
+                    count += 1
             
-        return single if single < (1<<31) else single - (1<<32)
+            if count % 3 != 0:
+                answer += mask
+            mask <<= 1
+            
+        
+        
+        return answer if negative % 3 == 0 else -answer
