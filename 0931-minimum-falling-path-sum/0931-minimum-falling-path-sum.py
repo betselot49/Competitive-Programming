@@ -1,23 +1,11 @@
 class Solution:
     def minFallingPathSum(self, matrix: List[List[int]]) -> int:
-        grid = matrix
-        for i in range(1, len(grid)):
-            for j in range(len(grid[i])):
-                if i-1 >= 0 and j-1 >= 0:
-                    p1 = grid[i-1][j-1]
-                else:
-                    p1 = float('inf')
-
-                if i-1 >= 0:
-                    p2 = grid[i-1][j]
-                else:
-                    p2 = float('inf')
-
-                if i-1 >= 0 and j+1 <= len(grid[0])-1:
-                    p3 = grid[i-1][j+1]
-                else:
-                    p3 = float('inf')
-
-                grid[i][j] += min(p1,p2,p3)
-
-        return min(grid[len(grid)-1])
+        N, M = len(matrix), len(matrix[0])
+        for row in range(N - 2, -1, -1):
+            for col in range(M):
+                bottom_left = matrix[row+1][col-1] if col - 1 >= 0 else float("inf")
+                bottom = matrix[row+1][col]
+                bottom_right = matrix[row+1][col+1] if col + 1 < M else float("inf")
+                
+                matrix[row][col] = min(bottom_left, bottom, bottom_right) + matrix[row][col]
+        return min(matrix[0])
