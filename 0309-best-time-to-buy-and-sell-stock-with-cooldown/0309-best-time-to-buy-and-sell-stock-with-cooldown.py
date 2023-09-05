@@ -1,21 +1,25 @@
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        n=len(prices)
-        ahead=[0]*2
-        ahead2=[0]*2
-        curr=[0]*2
-        for ind in range(n-1,-1,-1):
-            for buy in range(2):
-                profit=0
-                if buy==0: #buy a stock
-                    take=-prices[ind]+ahead[1] 
-                    not_take=0+ahead[0]
-                    profit=max(take,not_take)
-                else:
-                    take=prices[ind]+ahead2[0] # +2 for cooldown
-                    not_take=0+ahead[1]
-                    profit=max(take,not_take)
-                curr[buy]=profit
-            ahead2=ahead[:]
-            ahead=curr[:]
-        return curr[0]
+        N = len(prices)
+        dp = {}
+        
+        max_profit = 0
+        for i in range(N-1, -1, -1):
+            
+            # buying at this index
+            buy_profit = -prices[i]
+            for j in range(i+1, N):
+                buy_profit = max(buy_profit, dp[j][1] + (prices[j] - prices[i]))
+            max_profit = max(max_profit, buy_profit)
+            
+            # selling at this index
+            sell_profit = 0
+            for j in range(i+2, N):
+                sell_profit = max(sell_profit, dp[j][0])
+            max_profit = max(max_profit, sell_profit)
+           
+            dp[i] = [buy_profit, sell_profit]
+            
+        print(dp)
+        return max_profit
+            
