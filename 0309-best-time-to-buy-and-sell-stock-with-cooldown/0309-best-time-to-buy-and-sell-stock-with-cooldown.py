@@ -20,6 +20,5 @@ class Solution:
            
             dp[i] = [buy_profit, sell_profit]
             
-        print(dp)
         return max_profit
             
