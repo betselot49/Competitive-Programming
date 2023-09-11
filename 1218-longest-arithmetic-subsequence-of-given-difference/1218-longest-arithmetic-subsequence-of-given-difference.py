@@ -1,6 +1,10 @@
 class Solution:
-    def longestSubsequence(self, arr: List[int], difference: int) -> int:
-        dp = collections.defaultdict(int)
-        for num in arr:
-            dp[num] = max(dp[num], 1+dp[num-difference])
-        return max(dp.values())
+    def longestSubsequence(self, arr: List[int], diff: int) -> int:
+        max_art = 1
+        dp = defaultdict(int)
+       
+        for num in arr[::-1]:
+            dp[num] = max(dp[num], dp[num+diff] + 1)
+            max_art = max(max_art, dp[num])
+            
+        return max_art
