@@ -1,16 +1,9 @@
 class Solution:
     def rob(self, nums: List[int]) -> int:
-        memo = {}
-        def dp(n):
-            if n == 0:
-                return nums[0]
-            if n == 1:
-                return max(nums[0] , nums[1])
-            
-            if n not in memo:
-                memo[n] = max(dp(n-1), dp(n-2) + nums[n])
-                
-            return memo[n]
-        
-        return dp(len(nums)-1)
-            
+        @cache
+        def robber(i):
+            if i >= len(nums): return 0
+            take = nums[i] + robber(i+2)
+            skip = max(robber(i+1), robber(i+2))
+            return max(take, skip)
+        return robber(0)
