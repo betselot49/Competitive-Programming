@@ -6,20 +6,18 @@ class Trie:
     def insert(self, word: str) -> None:
         curr = self.root
         for char in word:
-            idx = ord(char) - 97
-            if curr.children[idx] == None:
-                curr.children[idx] = TrieNode()
-            curr = curr.children[idx]
+            if char not in curr.children:
+                curr.children[char] = TrieNode()
+            curr = curr.children[char]
             
         curr.is_End = True
 
     def search(self, word: str) -> bool:
         curr = self.root
         for char in word:
-            idx = ord(char) - 97
-            if curr.children[idx] == None:
+            if char not in curr.children:
                 return False
-            curr = curr.children[idx]
+            curr = curr.children[char]
         
         return curr.is_End
             
@@ -27,10 +25,9 @@ class Trie:
     def startsWith(self, prefix: str) -> bool:
         curr = self.root
         for char in prefix:
-            idx = ord(char) - 97
-            if curr.children[idx] == None:
+            if char not in curr.children:
                 return False
-            curr = curr.children[idx]
+            curr = curr.children[char]
         
         return True
         
@@ -39,7 +36,9 @@ class Trie:
 class TrieNode:
     def __init__(self):
         self.is_End = False
-        self.children = [ None for _ in range(26) ]
+        # self.children = [ None for _ in range(26) ]        
+        self.children = defaultdict(list)
+
         
         
 # Your Trie object will be instantiated and called as such:
