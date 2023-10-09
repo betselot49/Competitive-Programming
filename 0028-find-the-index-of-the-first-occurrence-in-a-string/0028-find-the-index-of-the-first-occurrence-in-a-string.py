@@ -1,20 +1,12 @@
 class Solution:
     def strStr(self, haystack: str, needle: str) -> int:
-        hash = {}
         m = len(needle)
-        print(len(haystack))
-        
-        start = haystack[:m]
-        start = start[::-1]
-     
-     
         hash_map = {}
         
         def preCompute(word):
-            alpha = 27
             num = 0
             for i, char in enumerate(word):
-                num += (ord(char) - 96) * (alpha ** i)
+                num += (ord(char) - 96) * (27 ** i)
             return num
         
         def add(word, char):
@@ -29,6 +21,7 @@ class Solution:
             
         first = preCompute(haystack[:m][::-1])
         needle = preCompute(needle[::-1]) 
+        
         hash_map[0] = first
         for i in range(0, len(haystack) - m):
             curr = remove(first, haystack[i], m-1)
@@ -38,5 +31,6 @@ class Solution:
             
         for i in range(len(haystack) - m + 1):
             if hash_map[i] == needle: return i
+        
         return -1
           
