@@ -1,40 +1,33 @@
 class Solution:
-    def strStr(self, haystack: str, needle: str) -> int:
-        m = len(needle)
-        hash_map = {}
+    def strStr(self, haystack: str, needle: str) -> int:       
+        lps = [0]
+        i = 0
+        j = 1
+        while j < len(needle):
+            if i == 0 and needle[i] != needle[j]:
+                lps.append(0)
+                j += 1
+            elif needle[i] == needle[j]:
+                lps.append(i + 1)
+                i += 1
+                j += 1
+            else:
+                i = lps[i - 1]
         
-        # precompure needle and substring in hystack with length needle
-        def preCompute(word):
-            num = 0
-            for i, char in enumerate(word):
-                num += (ord(char) - 96) * (27 ** i)
-            return num
-        
-        # add to the right if the string => word is a number representation not a string
-        def add(word, char):
-            word *= 27
-            word += ord(char) - 96
-            return word
-        
-        # remove from the left
-        def remove(word, char, m):
-            word -= (ord(char) - 96) * (27 ** m)
-            return word
+        i = 0
+        j = 0
+        while i < len(haystack):
+            if j == len(needle): return i - len(needle)
             
-            
-        first = preCompute(haystack[:m][::-1])
-        needle = preCompute(needle[::-1]) 
+            elif j == 0 and needle[j] != haystack[i]:
+                i += 1
+                
+            elif needle[j] == haystack[i]:
+                i += 1
+                j += 1
+            else:
+                j = lps[j - 1]
         
-        hash_map[0] = first
-        # find the maching substring
-        for i in range(0, len(haystack) - m):
-            curr = remove(first, haystack[i], m-1)
-            curr = add(curr, haystack[i+m])
-            hash_map[i+1] = curr
-            first = curr
-            
-        for i in range(len(haystack) - m + 1):
-            if hash_map[i] == needle: return i
-        
+        if j == len(needle): return i - len(needle)
         return -1
-          
+
