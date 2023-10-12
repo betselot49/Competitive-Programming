@@ -4,18 +4,19 @@ class Solution:
         i = 0
         j = 1
         while j < len(needle):
-            if i == 0 and needle[i] != needle[j]:
-                lps.append(0)
-                j += 1
-            elif needle[i] == needle[j]:
+            if needle[i] == needle[j]:
                 lps.append(i + 1)
                 i += 1
                 j += 1
+            elif i == 0:
+                lps.append(0)
+                j += 1
             else:
                 i = lps[i - 1]
+        print(lps)
         
-        i = 0
-        j = 0
+        # Maching
+        i = j = 0
         while i < len(haystack):
             if j == len(needle): return i - len(needle)
             
